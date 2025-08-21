@@ -20,7 +20,7 @@ client = OpenAI(api_key=api_key)
 st.markdown(
     """
     <h1 style="margin-bottom:0;">💹 PortGen 
-        <span style="font-size:20px; font-weight:normal; color:gray;">
+        <span style="font-size:30px; font-weight:normal; color:gray;">
         나의 주식 포트폴리오 매니저
         </span>
     </h1>
