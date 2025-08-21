@@ -32,7 +32,7 @@ st.write(
     """
     투자한 국내/미국 주식 종목코드와 각 비중을 입력하면 Maximum Sharpe Ratio 기반 포트폴리오 리밸런싱으로 새로운 투자 전략을 제안합니다.  
 
-    📌 Maximum Sharpe Ratio란, 경제학자 William Sharpe가 제안한 Sharpe Ratio를 최대화하는 투자 전략으로, 위험(변동성) 대비 수익률을 가장 효율적으로 높이는 방법을 의미합니다.
+    📌 Maximum Sharpe Ratio란, 경제학자 William Sharpe가 제안한 Sharpe Ratio를 최대화하는 투자 전략으로, 위험(변동성) 대비 수익률을 가장 효율적으로 높이는 방법론을 의미합니다.
     """
 )
 
