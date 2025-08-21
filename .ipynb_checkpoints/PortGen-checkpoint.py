@@ -11,12 +11,13 @@ from openai import OpenAI
 import os
 
 # -------------------------
-# OpenAI 클라이언트 (Secrets에서 API Key 불러오기)
+# OpenAI 클라이언트(Streamlit Secrets에서 API Key 불러오기)
 api_key = st.secrets["OPENAI_API_KEY"]
 client = OpenAI(api_key=api_key)
 
 # -------------------------
 # Streamlit UI
+# 대제목 & 소제목
 st.markdown(
     """
     <h1 style="margin-bottom:0;">💹 PortGen 
@@ -36,10 +37,9 @@ st.write(
 )
 
 
-# 사용자 입력
+# 사용자 입력란
 st.sidebar.header("📝 내 주식 포트폴리오 입력하기")
 
-# 입력란
 user_stocks_input = st.sidebar.text_input(
     "종목코드 (최대 10개)",
     value="",
