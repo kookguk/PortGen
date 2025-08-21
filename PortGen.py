@@ -27,7 +27,15 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.write("투자한 국내/미국 주식 종목코드와 각 비중을 입력하면 Maximum Sharpe Ratio 기반 포트폴리오 리밸런싱으로 새로운 투자 전략을 제안합니다.")
+st.write(
+    """
+    투자한 국내/미국 주식 종목코드와 각 비중을 입력하면 Maximum Sharpe Ratio 기반 포트폴리오 리밸런싱으로 새로운 투자 전략을 제안합니다.  
+
+    📌 Maximum Sharpe Ratio란, 경제학자 William Sharpe가 제안한 Sharpe Ratio를  
+    최대화하는 투자 전략으로, 위험(변동성) 대비 수익률을 가장 효율적으로 높이는 방법을 의미합니다.
+    """
+)
+
 
 # 사용자 입력
 st.sidebar.header("📝 내 주식 포트폴리오 입력하기")
@@ -77,7 +85,7 @@ def load_data(tickers):
     return data, failed_tickers
 
 # -------------------------
-if st.button("🚀 포트폴리오 분석 실행"):
+if st.button("🚀 포트폴리오 분석하기"):
      
     # 0. 입력 검증
     if not user_stocks_input or not user_weights_input:
