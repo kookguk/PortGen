@@ -8,7 +8,6 @@ from scipy.optimize import minimize
 import plotly.graph_objects as go
 import plotly.express as px
 from openai import OpenAI
-import os
 
 # -------------------------
 # OpenAI 클라이언트(Streamlit Secrets에서 API Key 불러오기)
@@ -36,7 +35,7 @@ st.write(
     """
 )
 
-
+# -------------------------
 # 사용자 입력란
 st.sidebar.header("📝 내 주식 포트폴리오 입력하기")
 
@@ -52,13 +51,20 @@ user_weights_input = st.sidebar.text_input(
     placeholder="각 종목 별 투자 비중을 입력해주세요"
 )
 
-st.sidebar.markdown(
-    """
-💡 예시 입력: `MSFT, AAPL, 005930.KQ` / `0.3,0.4,0.3`  
+analyze_button = st.sidebar.button("🚀 포트폴리오 분석하기")
 
-🚨 주의점  
-1) 국내 주식의 경우 기업명이 아닌 정확한 종목코드를 입력해주세요. ex) 삼성전자 ❌, 005930.KQ ✅  
-2) 국내 주식의 경우 종목 코드를 코스피는 .KS, 코스닥은 .KQ 형식으로 입력해주세요. ex) 005930 ❌, 005930.KQ ✅
+# 예시 입력 & 주의점 콜아웃
+st.sidebar.info(
+    """
+    💡 **예시 입력**  
+    - 종목코드: `MSFT, AAPL, 005930.KQ`  
+    - 비중: `0.3,0.4,0.3`  
+
+    🚨 **주의점**  
+    1) 국내 주식은 기업명이 아닌 **정확한 종목코드**를 입력해야 합니다.  
+       (예: 삼성전자 ❌, 005930.KQ ✅)  
+    2) 코스피는 `.KS`, 코스닥은 `.KQ`를 붙여주세요.  
+       (예: 005930 ❌, 005930.KQ ✅)  
     """
 )
 
@@ -84,7 +90,7 @@ def load_data(tickers):
     return data, failed_tickers
 
 # -------------------------
-if st.button("🚀 포트폴리오 분석하기"):
+if analyze_button:
      
     # 0. 입력 검증
     if not user_stocks_input or not user_weights_input:
@@ -153,7 +159,7 @@ if st.button("🚀 포트폴리오 분석하기"):
     opt_sharpe = opt_return / opt_vol
 
     # 6. 시각화 (Plotly 사용)
-    # (좌) 기존 vs 최적 비중 비교
+    # 기존 vs 최적 비중 비교(Bar plot)
     fig1 = go.Figure(data=[
         go.Bar(name="기존", x=user_stocks, y=user_weights),
         go.Bar(name="최적", x=user_stocks, y=opt_weights)
@@ -165,7 +171,7 @@ if st.button("🚀 포트폴리오 분석하기"):
         yaxis_title="비중"
     )
 
-    # (우) 기존 vs 최적 누적 수익률 비교
+    # 기존 vs 최적 누적 수익률 비교(Line chart)
     orig_port_returns = returns @ user_weights
     opt_port_returns = returns @ opt_weights
     cum_returns = pd.DataFrame({
@@ -179,7 +185,6 @@ if st.button("🚀 포트폴리오 분석하기"):
         yaxis_title="누적 수익률",
         legend_title_text=""
         )
-
 
     st.plotly_chart(fig1, use_container_width=True)
     st.plotly_chart(fig2, use_container_width=True)
