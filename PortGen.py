@@ -76,7 +76,7 @@ user_stocks = [s.strip().upper() for s in user_stocks_input.split(",") if s.stri
 
 # -------------------------
 # yfinance 종가 데이터 다운로드 함수
-@st.cache_data(show_spinner=False)  # 캐시 실행 메시지 숨기기
+@st.cache_data(show_spinner=False)
 def load_data(tickers):
     end_date = datetime.today().strftime("%Y-%m-%d")
     start_date = (datetime.today().replace(year=datetime.today().year - 5)).strftime("%Y-%m-%d")
