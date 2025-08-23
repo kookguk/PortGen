@@ -124,7 +124,8 @@ if analyze_button:
         st.stop()
 
     # 1. 데이터 수집
-    data, failed_tickers = load_data(user_stocks)
+    with st.spinner("⏳ 답변 생성 중..."):
+        data, failed_tickers = load_data(user_stocks)
     if failed_tickers:
         st.error(f"❌ 잘못된 종목코드: {', '.join(failed_tickers)}")
         st.stop()
