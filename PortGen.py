@@ -54,25 +54,18 @@ user_weights_input = st.sidebar.text_input(
 analyze_button = st.sidebar.button("🚀 포트폴리오 분석하기")
 
 # 예시 입력 & 주의점 콜아웃
-st.sidebar.markdown(
+st.sidebar.info(
     """
-    <div style="background-color:#2E2E2E; padding:15px; border-radius:10px; color:white;">
-        💡 <b>예시 입력</b><br>
-        - 종목코드: <code>MSFT, AAPL, 005930.KQ</code><br>
-        - 비중: <code>0.3,0.4,0.3</code><br><br>
+    💡 **예시 입력**  
+    - 종목코드: MSFT, AAPL, 005930.KQ
+    - 비중: 0.3,0.4,0.3
 
-        🚨 <b>주의점</b><br>
-        1) 국내 주식은 기업명이 아닌 <b>정확한 종목코드</b>를 입력해야 합니다.<br>
-        (예: 삼성전자 ❌, 005930.KQ ✅)<br><br>
-        2) 국내 주식은 <code>.KS</code>(코스피), <code>.KQ</code>(코스닥) 형식으로 입력해야 합니다.<br>
-        (예: 005930 ❌, 005930.KQ ✅)<br><br>
-        3) 비중은 반드시 <b>소수점</b>으로 입력해야 합니다.<br>
-        (예: 30% ❌, 0.3 ✅)<br><br>
-        4) 비중의 전체 합은 반드시 <b>1</b>이어야 합니다.<br>
-        (예: 0.1,0.3,0.3 ❌, 0.4,0.3,0.3 ✅)
-    </div>
-    """,
-    unsafe_allow_html=True
+    🚨 **주의점**  
+    1) 국내 주식의 경우 기업명이 아닌 정확한 종목코드를 입력해주세요. ex) 삼성전자 ❌, 005930.KQ ✅ 
+    2) 국내 주식의 경우 종목 코드를 코스피는 .KS, 코스닥은 .KQ 형식으로 입력해주세요. ex) 005930 ❌, 005930.KQ ✅ 
+    3) 비중은 반드시 소수점으로 입력해주세요. ex) 30% ❌, 0.3 ✅ 
+    4) 비중의 전체합은 반드시 1이어야 합니다. ex) 0.1,0.3,0.3 ❌, 0.4,0.3,0.3 ✅
+    """
 )
 
 user_stocks = [s.strip().upper() for s in user_stocks_input.split(",") if s.strip()]
