@@ -57,7 +57,7 @@ analyze_button = st.sidebar.button("🚀 포트폴리오 분석하기")
 st.sidebar.info(
     """
     💡 **예시 입력**  
-    - 종목코드: <code>MSFT<code>, AAPL, 005930.KQ
+    - 종목코드: <code>MSFT</code>, AAPL, 005930.KQ
     - 비중: 0.3, 0.4, 0.3
 
     🚨 **주의점**  
